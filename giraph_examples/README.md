@@ -82,7 +82,9 @@ The logs for giraph are located in /usr/local/hadoop/logs/userlogs/application_*
 
 
 
+HOW TO BUILD GIRAPH APPS FROM SCRATCH
 
+The previous example was using the giraph examples from the uber jar (*-examples-with-dependencies-*.jar).  This section describes how to create an app from "scratch" in two different ways
 
 
 
