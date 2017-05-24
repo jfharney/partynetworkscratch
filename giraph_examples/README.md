@@ -84,7 +84,73 @@ The logs for giraph are located in /usr/local/hadoop/logs/userlogs/application_*
 
 HOW TO BUILD GIRAPH APPS FROM SCRATCH
 
-The previous example was using the giraph examples from the uber jar (*-examples-with-dependencies-*.jar).  This section describes how to create an app from "scratch" in two different ways
+The previous example was using the giraph examples from the uber jar (*-examples-with-dependencies-*.jar).  This section describes how to create an app from "scratch" in two different ways.  Here is the first way (probably not the optimal deployment strategy but it works).  There were some CLASSPATH issues with this method, and thus that is why I added the jars to the explicit shared directory of HADOOP.
+
+
+1 - Copy the helloworldfromscratch example in the git repo into the docker container
+
+//Assuming helloworldfromscratchfolder is located in $HELLOWORLD on host
+
+docker cp $HELLOWORLD/helloworldfromscratch <docker_instance_name>/
+
+This will copy that directory into the root directory ("/") of the docker container.  It is probably best to find another place for it.
+
+
+2 - Go to the helloworldfromscratch directory and run mvn package.
+
+NOTE: Everything from here onwards is in the docker container itself (i.e. the console used when "docker run" was called")
+
+cd /helloworldfromscratch
+
+mvn clean package
+
+
+
+This should create a "target" directory in the helloworldfromscratch directory with a jar called "book-examples-1.0.0.jar".
+
+
+3 - Restart Hadoop.  
+
+Might be a good idea to stop and start hdfs and yarn in the container.
+
+$HADOOP_HOME/sbin/stop-dfs.sh (or .cmd)
+$HADOOP_HOME/sbin/stop-yarn.sh (or .cmd)
+$HADOOP_HOME/sbin/start-dfs.sh (or .cmd)
+$HADOOP_HOME/sbin/start-yarn.sh
+
+
+
+
+4 - Copy the resources to HDFS.
+
+//create the directories for input
+$HADOOP_HOME/bin/hdfs dfs -mkdir /user/root/input/book
+$HADOOP_HOME/bin/hdfs dfs -mkdir /user/root/input/book/helloworld
+
+/usr/local/hadoop/bin/hdfs dfs -put resources/combinedgraph/graph.txt /user/root/input/book/helloworld/
+
+
+5 - Copy the jar into the hadoop shared library.  
+
+cp target/book-examples-1.0.0.jar /usr/local/hadoop/share/hadoop/yarn/lib/
+
+6 - Copy the dependencies jar into the hadoop shared library
+
+cp /usr/local/giraph/giraph-examples/target/giraph-examples-1.1.0-SNAPSHOT-for-hadoop-2.4.1-jar-with-dependencies.jar /usr/local/hadoop/share/hadoop/yarn/lib/
+
+7 - Run the application.  Note the class name and resources must be consistent with what you place in the jar:
+
+/usr/local/giraph/bin/giraph target/*.jar GiraphHelloWorld -vip /user/root/input/book/helloworld -vif org.apache.giraph.io.formats.IntIntNullTextInputFormat -w 1 -ca giraph.SplitMasterWorker=false,giraph.logLevel=error
+
+8 - Examine the log output
+
+
+
+
+
+
+
+
 
 
 
