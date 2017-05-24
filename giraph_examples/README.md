@@ -145,6 +145,23 @@ cp /usr/local/giraph/giraph-examples/target/giraph-examples-1.1.0-SNAPSHOT-for-h
 8 - Examine the log output
 
 
+Output should be in userlogs:
+
+
+/usr/local/hadoop/logs/userlogs/application_*std_out.log
+
+(where * is the application number)
+
+The output should look something like this:
+
+Hello world from the: 6 who is following: 3 4
+Hello world from the: 5 who is following: 1 2 4
+Hello world from the: 7 who is following: 3 5
+Hello world from the: 2 who is following:
+Hello world from the: 1 who is following: 2
+Hello world from the: 3 who is following: 1 4
+Hello world from the: 4 who is following: 2 7
+
 
 
 
