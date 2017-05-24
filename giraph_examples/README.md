@@ -26,7 +26,7 @@ docker run --volume $HOME:/myhome --rm --interactive --tty uwsampa/giraph-docker
 
 This will put you at the root directory of the container.
 
-3 - Run a quick out-of-the-box example from Giraph.
+3 - Prepare a quick out-of-the-box example from Giraph.
 
 // change directory to the GIRAPH_HOME environment variable
 // NOTE: it was automatically set as /usr/local/giraph/
@@ -35,6 +35,12 @@ cd $GIRAPH_HOME
 // prepare input (basic text file) into giraph
 // note it is copying a text file into an HDFS location that giraph will read
 $HADOOP_HOME/bin/hdfs dfs -put tiny-graph.txt /user/root/input
+
+4 - Run the quick out-of-the-box example from Giraph.
+
+// run the example
+// NOTE: it uses the "hadoop jar" command
+$HADOOP_HOME/bin/hadoop jar $GIRAPH_HOME/giraph-examples/target/giraph-examples-1.1.0-SNAPSHOT-for-hadoop-2.4.1-jar-with-dependencies.jar org.apache.giraph.GiraphRunner org.apache.giraph.examples.SimpleShortestPathsComputation --yarnjars giraph-examples-1.1.0-SNAPSHOT-for-hadoop-2.4.1-jar-with-dependencies.jar --workers 1 --vertexInputFormat org.apache.giraph.io.formats.JsonLongDoubleFloatDoubleVertexInputFormat --vertexInputPath /user/root/input/tiny-graph.txt -vertexOutputFormat org.apache.giraph.io.formats.IdWithValueTextOutputFormat --outputPath /user/root/output
 
 
 
