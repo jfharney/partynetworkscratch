@@ -4,6 +4,8 @@
   // initialization process (though none currently exist).
   window.HTMLWidgets = window.HTMLWidgets || {};
 
+  console.log('HTMLWidgets: ' + window.HTMLWidgets);
+  
   // See if we're running in a viewer pane. If not, we're in a web browser.
   var viewerMode = window.HTMLWidgets.viewerMode =
       /\bviewer_pane=1\b/.test(window.location);
