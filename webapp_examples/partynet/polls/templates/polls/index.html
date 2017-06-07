@@ -1,4 +1,8 @@
 
+<html>
+
+<head>
+
 {% load static %}
 
 
@@ -36,6 +40,1049 @@
 <link href="{% static 'polls/css/shinydashboard-0.5.3/shinydashboard.css' %}" rel="stylesheet" />
 <script src="{% static 'polls/js/shinydashboard-0.5.3/shinydashboard.js' %}"></script> 
 
+<script src="{% static 'polls/js/shinyjs/shinyjs-default-funcs.js' %}"></script>
+
+
+<script>shinyjs.debug = false;</script>
+<style>
+          /* logo */
+          .skin-blue .main-header .logo {
+          background-color: #000080;
+          }
+          
+          /* logo when hovered */
+          .skin-blue .main-header .logo:hover {
+          background-color: #87ceeb;
+          }
+          
+          /* navbar (rest of the header) */
+          .skin-blue .main-header .navbar {
+          background-color: #6495ed;
+          }
+          
+          /* main sidebar */
+          .skin-blue .main-sidebar {
+          background-color: #FFFFFF;
+          }
+          
+          /* active selected tab in the sidebarmenu */
+          .skin-blue .main-sidebar .sidebar .sidebar-menu .active a{
+          background-color: #FFFFFF;
+          }
+          
+          /* other links in the sidebarmenu */
+          .skin-blue .main-sidebar .sidebar .sidebar-menu a{
+          background-color: #6495ed;
+          color: #000000;
+          }
+          
+          /* other links in the sidebarmenu when hovered */
+          .skin-blue .main-sidebar .sidebar .sidebar-menu a:hover{
+          background-color: #87ceeb;
+          }
+          /* toggle button when hovered  */
+          .skin-blue .main-header .navbar .sidebar-toggle:hover{
+          background-color: #87ceeb;
+          }
+</style>
+<style>#resetParty{background-color:orange}</style>
+<style type="text/css">#resetParty {  margin-bottom: 0px;}</style>
+<style>#sar_geo{background-color:gold}</style>
+<style type="text/css">#sar_geo {  margin-bottom: 3px;}</style>
+<style>#sar_party{background-color:gold}</style>
+<style type="text/css">#sar_party {  margin-bottom: 3px;}</style>
+<style type="text/css">
+        
+        div.vis-network div.vis-navigation div.vis-button:hover {
+        box-shadow: none !important;
+        }
+        
+        div.vis-network div.vis-navigation div.vis-button:active {
+        box-shadow: none;
+        }
+        
+        div.vis-network div.vis-navigation div.vis-button.vis-down{
+        background-image:none;
+        }
+        div.vis-network div.vis-navigation div.vis-button.vis-down:before{
+        font-family: FontAwesome;
+        font-style: normal;
+        content: '\f0ab';
+        font-size:30px;
+        color: rgb(65, 118, 167);
+        }
+        
+        div.vis-network div.vis-navigation div.vis-button.vis-left{
+        background-image:none;
+        }
+        div.vis-network div.vis-navigation div.vis-button.vis-left:before{
+        font-family: FontAwesome;
+        font-style: normal;
+        content: '\f0a8';
+        font-size:30px;
+        color: rgb(65, 118, 167);
+        }
+        div.vis-network div.vis-navigation div.vis-button.vis-right{
+        background-image:none;
+        }
+        div.vis-network div.vis-navigation div.vis-button.vis-right:before{
+        font-family: FontAwesome;
+        font-style: normal;
+        font-size:30px;
+        content: '\f0a9';
+        color: rgb(65, 118, 167);
+        }
+        div.vis-network div.vis-navigation div.vis-button.vis-up{
+        background-image:none;
+        }
+        div.vis-network div.vis-navigation div.vis-button.vis-up:before{
+        font-family: FontAwesome;
+        font-style: normal;
+        font-size:30px;
+        content: '\f0aa';
+        color: rgb(65, 118, 167);
+        }
+        
+        
+        div.vis-network div.vis-navigation div.vis-button.vis-zoomExtends{
+        background-image:none;
+        }
+        div.vis-network div.vis-navigation div.vis-button.vis-zoomExtends:before{
+        font-family: FontAwesome;
+        font-style: normal;
+        content: '\f0b2';
+        font-size:30px;
+        color: rgb(65, 118, 167);
+        }
+        
+        div.vis-network div.vis-navigation div.vis-button.vis-zoomIn{
+        background-image:none;
+        }
+        div.vis-network div.vis-navigation div.vis-button.vis-zoomIn:before{
+        font-family: FontAwesome;
+        font-style: normal;
+        content: '\f055';
+        font-size:30px;
+        color: rgb(65, 118, 167);
+        }
+        div.vis-network div.vis-navigation div.vis-button.vis-zoomOut{
+        background-image:none;
+        }
+        div.vis-network div.vis-navigation div.vis-button.vis-zoomOut:before{
+        font-family: FontAwesome;
+        font-style: normal;
+        content: '\f056';
+        font-size:30px;
+        color: rgb(65, 118, 167);
+        }
+        
+</style>
+
+
+</head>
+
+<body class="skin-blue" style="min-height: 611px;">
+  <div class="wrapper">
+    <header class="main-header">
+      <span class="logo">Investigator Tool</span>
+      <nav class="navbar navbar-static-top" role="navigation">
+        <span style="display:none;">
+          <i class="fa fa-bars"></i>
+        </span>
+        <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+          <span class="sr-only">Toggle navigation</span>
+        </a>
+        <div class="navbar-custom-menu">
+          <ul class="nav navbar-nav"></ul>
+        </div>
+      </nav>
+    </header>
+    
+    <aside class="main-sidebar">
+      <section class="sidebar">
+        <ul class="sidebar-menu">
+          <li>
+            <a href="#shiny-tab-party" data-toggle="tab" data-value="party">
+              <i class="fa fa-connectdevelop"></i>
+              <span>Party Network</span>
+            </a>
+          </li>
+          <li>
+            <a href="#shiny-tab-geo" data-toggle="tab" data-value="geo">
+              <i class="fa fa-globe"></i>
+              <span>Geo Network</span>
+            </a>
+          </li>
+          <li>
+            <a href="#shiny-tab-community" data-toggle="tab" data-value="community">
+              <i class="fa fa-group"></i>
+              <span>Community Detection</span>
+            </a>
+          </li>
+          <li>
+            <a href="#shiny-tab-anomaly" data-toggle="tab" data-value="anomaly">
+              <i class="fa fa-flash"></i>
+              <span>Anomaly Detection</span>
+            </a>
+          </li>
+          <li>
+            <a href="#shiny-tab-time_series" data-toggle="tab" data-value="time_series">
+              <i class="fa fa-line-chart"></i>
+              <span>Time Series Analysis</span>
+            </a>
+          </li>
+          <li>
+            <a href="#shiny-tab-fraud" data-toggle="tab" data-value="fraud">
+              <i class="fa fa-exclamation-circle"></i>
+              <span>Fraud Analytics</span>
+            </a>
+          </li>
+          <li>
+            <a href="#shiny-tab-sar" data-toggle="tab" data-value="sar">
+              <i class="fa fa-flag"></i>
+              <span>SAR</span>
+            </a>
+          </li>
+          <form class="sidebar-form">
+            <div class="input-group">
+              <input id="searchText" type="text" class="form-control" placeholder="Search..."/>
+              <span class="input-group-btn">
+                <button id="searchButton" type="button" class="btn btn-flat action-button">
+                  <i class="fa fa-search"></i>
+                </button>
+              </span>
+            </div>
+          </form>
+        </ul>
+      </section>
+    </aside>
+    
+    
+    <div class="content-wrapper">
+      <section class="content">
+        <div class="tab-content">
+        	<div role="tabpanel" class="tab-pane" id="shiny-tab-party">
+            	<div class="row">
+            		<a id="sar_party" class="btn btn-default shiny-download-link " href="" target="_blank" download>
+                	<i class="fa fa-download"></i>
+                	SAR
+              		</a>
+              		<div style="display:inline-block; width:150px">
+                		<div class="form-group shiny-input-container">
+                  			<input id="select_party_network" type="text" class="form-control" value="" placeholder="Party ID"/>
+                		</div>
+              		</div>
+            		<div style="display:inline-block; width:150px">
+                		<div class="form-group shiny-input-container">
+                  			<input id="select_counterparty_network" type="text" class="form-control" value="" placeholder="CounterParty ID"/>
+                		</div>
+              		</div>
+              		<div style="display:inline-block; width:100px">
+                		<div class="form-group shiny-input-container">
+                  			<input id="add_party" type="text" class="form-control" value="" placeholder="Add Party"/>
+                		</div>
+              		</div>
+              		<div style="display:inline-block; width:50px"></div>
+              		<div style="display:inline-block; width:150px">
+                		<div class="form-group shiny-input-container">
+                  			<input id="party_account_input" type="text" class="form-control" value="" placeholder="Account Number"/>
+                		</div>
+              		</div>
+              		<div style="display:inline-block; width:150px">
+                		<div class="form-group shiny-input-container">
+                  			<input id="party_email_input" type="text" class="form-control" value="" placeholder="Email Address"/>
+                		</div>
+              		</div>
+              		<div style="display:inline-block; width:150px">
+                		<div class="form-group shiny-input-container">
+                  			<input id="party_phone_input" type="text" class="form-control" value="" placeholder="Phone Number"/>
+                		</div>
+              		</div>
+              		<div style="display:inline-block; width:100px">
+                		<div class="form-group shiny-input-container">
+                  			<input id="party_ssn_input" type="text" class="form-control" value="" placeholder="SSN"/>
+                		</div>
+              		</div>
+              		
+              		
+           		</div> <!-- end row -->
+           	
+           		<div class="row">
+              		<div class="col-sm-2">
+                		<div style="width:200px; ">
+                  			<div class="form-group shiny-input-container">
+                    			<div class="checkbox">
+                      				<label>
+                        				<input id="stats" type="checkbox"/>
+                        				<span>Local Statistics</span>
+                      				</label>
+                    			</div>
+                  			</div>
+                		</div>
+                		
+                		
+                		<div style=" width:200px; ">
+		                  <div class="form-group shiny-input-container">
+		                    <div class="checkbox">
+		                      <label>
+		                        <input id="trans_info" type="checkbox"/>
+		                        <span>Transactions</span>
+		                      </label>
+		                    </div>
+		                  </div>
+		                </div>
+                		
+                		<div style=" width:200px; ">
+		                  <div class="form-group shiny-input-container">
+		                    <div class="checkbox">
+		                      <label>
+		                        <input id="accounts" type="checkbox"/>
+		                        <span>Party to Accounts</span>
+		                      </label>
+		                    </div>
+		                  </div>
+		                </div>
+		                <div style="width:200px; ">
+		                  <div class="form-group shiny-input-container">
+		                    <div class="checkbox">
+		                      <label>
+		                        <input id="party_info" type="checkbox"/>
+		                        <span>Party Information</span>
+		                      </label>
+		                    </div>
+		                  </div>
+		                </div>
+		                <div style="width:200px; ">
+		                  <div class="form-group shiny-input-container">
+		                    <div class="checkbox">
+		                      <label>
+		                        <input id="sam_alert_checkbox" type="checkbox"/>
+		                        <span>SAM Artifacts</span>
+		                      </label>
+		                    </div>
+		                  </div>
+		                </div>
+                		
+                		<div style="width:200px; ">
+		                  <div class="form-group shiny-input-container">
+		                    <div class="checkbox">
+		                      <label>
+		                        <input id="cdd_alert_checkbox" type="checkbox"/>
+		                        <span>CDD Artifacts</span>
+		                      </label>
+		                    </div>
+		                  </div>
+		                </div>
+		                <div style="width:200px; ">
+		                  <div class="form-group shiny-input-container">
+		                    <div class="checkbox">
+		                      <label>
+		                        <input id="sam_txn_checkbox" type="checkbox"/>
+		                        <span>SAM Transactions</span>
+		                      </label>
+		                    </div>
+		                  </div>
+		                </div>
+                		<div style="width:200px; ">
+		                  <div class="form-group shiny-input-container">
+		                    <div class="checkbox">
+		                      <label>
+		                        <input id="view_history_checkbox" type="checkbox"/>
+		                        <span>View Party History</span>
+		                      </label>
+		                    </div>
+		                  </div>
+                		</div>
+                		
+             		</div>
+             		 
+             		<div class="col-sm-10">
+		                <div id="party_output_network" style="width:100%; height:450px; " class="visNetwork html-widget html-widget-output"></div>
+		            </div>
+             		
+             		
+             		
+             		
+             		
+             		
+             		
+           		</div>	
+           		
+           		
+           		<!-- question? -->
+           		<div data-display-if="input.accounts == true">
+	              <div class="col-sm-6">
+	                <div class="box box-warning">
+	                  <div class="box-header">
+	                    <h3 class="box-title">Party to Accounts</h3>
+	                    <div class="box-tools pull-right">
+	                      <button class="btn btn-box-tool" data-widget="collapse">
+	                        <i class="fa fa-minus"></i>
+	                      </button>
+	                    </div>
+	                  </div>
+	                  
+	                  <div class="box-body">
+	                    <div id="party_accounts" style="width:100%; height:auto; " class="datatables html-widget html-widget-output"></div>
+	                  </div>
+	                  
+	                </div>
+	              </div>
+	            </div>
+            
+           		<div data-display-if="input.party_info == true">
+	              <div class="col-sm-6">
+	                <div class="box box-danger">
+	                  <div class="box-header">
+	                    <h3 class="box-title">Party Information</h3>
+	                    <div class="box-tools pull-right">
+	                      <button class="btn btn-box-tool" data-widget="collapse">
+	                        <i class="fa fa-minus"></i>
+	                      </button>
+	                    </div>
+	                  </div>
+	                  <div class="box-body">
+	                    <div id="party_info" style="width:100%; height:auto; " class="datatables html-widget html-widget-output"></div>
+	                  </div>
+	                </div>
+	              </div>
+	            </div>
+	            
+	            
+	            <div data-display-if="input.trans_info == true">
+	              <div class="col-sm-6">
+	                <div class="box box-warning">
+	                  <div class="box-header">
+	                    <h3 class="box-title">Transactions</h3>
+	                    <div class="box-tools pull-right">
+	                      <button class="btn btn-box-tool" data-widget="collapse">
+	                        <i class="fa fa-minus"></i>
+	                      </button>
+	                    </div>
+	                  </div>
+	                  <div class="box-body">
+	                    <div id="party_trans" style="width:100%; height:auto; " class="datatables html-widget html-widget-output"></div>
+	                  </div>
+	                </div>
+	              </div>
+	            </div>
+	            
+	            <div data-display-if="input.stats == true">
+	              <div class="col-sm-6">
+	                <div class="box box-primary">
+	                  <div class="box-header">
+	                    <h3 class="box-title">Local Statistics</h3>
+	                    <div class="box-tools pull-right">
+	                      <button class="btn btn-box-tool" data-widget="collapse">
+	                        <i class="fa fa-minus"></i>
+	                      </button>
+	                    </div>
+	                  </div>
+	                  <div class="box-body">
+	                    <div id="party_stats" style="width:100%; height:auto; " class="datatables html-widget html-widget-output"></div>
+	                  </div>
+	                </div>
+	              </div>
+	            </div>
+		            
+		            
+		        <div data-display-if="input.network_neighbours == true">
+	              <div class="col-sm-6">
+	                <div class="box box-primary">
+	                  <div class="box-header">
+	                    <h3 class="box-title">Nearest Neighbours</h3>
+	                    <div class="box-tools pull-right">
+	                      <button class="btn btn-box-tool" data-widget="collapse">
+	                        <i class="fa fa-minus"></i>
+	                      </button>
+	                    </div>
+	                  </div>
+	                  <div class="box-body">
+	                    <div id="my_neighbours" style="width:100%; height:auto; " class="datatables html-widget html-widget-output"></div>
+	                  </div>
+	                </div>
+	              </div>
+	            </div>    
+	            
+	            
+	            <div data-display-if="input.geo_neighbours == true">
+	              <div class="col-sm-6">
+	                <div class="box box-primary">
+	                  <div class="box-header">
+	                    <h3 class="box-title">Nearest Neighbours </h3>
+	                    <div class="box-tools pull-right">
+	                      <button class="btn btn-box-tool" data-widget="collapse">
+	                        <i class="fa fa-minus"></i>
+	                      </button>
+	                    </div>
+	                  </div>
+	                  <div class="box-body">
+	                    <div id="my_neighbours_geo" style="width:100%; height:auto; " class="datatables html-widget html-widget-output"></div>
+	                  </div>
+	                </div>
+	              </div>
+	            </div>
+           		
+           		
+           		
+           		<div data-display-if="input.cdd_alert_checkbox == true">
+	              <div class="col-sm-6">
+	                <div class="box box-primary">
+	                  <div class="box-header">
+	                    <h3 class="box-title">CDD Artifacts</h3>
+	                    <div class="box-tools pull-right">
+	                      <button class="btn btn-box-tool" data-widget="collapse">
+	                        <i class="fa fa-minus"></i>
+	                      </button>
+	                    </div>
+	                  </div>
+	                  <div class="box-body">
+	                    <div id="cdd_alerts_table" style="width:100%; height:auto; " class="datatables html-widget html-widget-output"></div>
+	                  </div>
+	                </div>
+	              </div>
+	            </div>
+           		
+           		
+           		<div data-display-if="input.sam_alert_checkbox == true">
+	              <div class="col-sm-6">
+	                <div class="box box-primary">
+	                  <div class="box-header">
+	                    <h3 class="box-title">SAM Artifacts</h3>
+	                    <div class="box-tools pull-right">
+	                      <button class="btn btn-box-tool" data-widget="collapse">
+	                        <i class="fa fa-minus"></i>
+	                      </button>
+	                    </div>
+	                  </div>
+	                  <div class="box-body">
+	                    <div id="sam_alerts_table" style="width:100%; height:auto; " class="datatables html-widget html-widget-output"></div>
+	                  </div>
+	                </div>
+	              </div>
+	            </div>
+           		
+           		
+           		<div data-display-if="input.sam_txn_checkbox == true">
+	              <div class="col-sm-6">
+	                <div class="box box-primary">
+	                  <div class="box-header">
+	                    <h3 class="box-title">SAM Transactions</h3>
+	                    <div class="box-tools pull-right">
+	                      <button class="btn btn-box-tool" data-widget="collapse">
+	                        <i class="fa fa-minus"></i>
+	                      </button>
+	                    </div>
+	                  </div>
+	                  <div class="box-body">
+	                    <div id="sam_txn_table" style="width:100%; height:auto; " class="datatables html-widget html-widget-output"></div>
+	                  </div>
+	                </div>
+	              </div>
+	            </div>
+           		
+           	
+	           	<div data-display-if="input.view_history_checkbox == true">
+	              <div class="col-sm-6">
+	                <div class="box box-primary">
+	                  <div class="box-header">
+	                    <h3 class="box-title">Party History</h3>
+	                    <div class="box-tools pull-right">
+	                      <button class="btn btn-box-tool" data-widget="collapse">
+	                        <i class="fa fa-minus"></i>
+	                      </button>
+	                    </div>
+	                  </div>
+	                  <div class="box-body">
+	                    <div id="party_history_table" style="width:100%; height:auto; " class="datatables html-widget html-widget-output"></div>
+	                  </div>
+	                </div>
+	              </div>
+	            </div>
+           	
+           	
+           	
+           	
+           	
+           	
+           	
+           	
+           	
+           	</div>	
+           	  
+           	<div role="tabpanel" class="tab-pane" id="shiny-tab-geo">
+	            <a id="sar_geo" class="btn btn-default shiny-download-link " href="" target="_blank" download>
+	              <i class="fa fa-download"></i>
+	              SAR
+	            </a>
+	            <div style="display:inline-block; width:150px">
+	              <div class="form-group shiny-input-container">
+	                <input id="select_party" type="text" class="form-control" value="" placeholder="Party ID"/>
+	              </div>
+	            </div>
+	            <div style="display:inline-block; width:200px">
+	              <div class="form-group shiny-input-container">
+	                <input id="select_account" type="text" class="form-control" value="" placeholder="Enter Account Number"/>
+	              </div>
+	            </div>
+	            
+	            <div style="display:inline-block; width:300px">
+	              <div class="form-group shiny-input-container">
+	                <input id="select_email" type="text" class="form-control" value="" placeholder="Enter email address"/>
+	              </div>
+	            </div>
+	            <div style="display:inline-block; width:200px">
+	              <div class="form-group shiny-input-container">
+	                <input id="select_phone" type="text" class="form-control" value="" placeholder="Enter phone number"/>
+	              </div>
+	            </div>
+	            <div style="display:inline-block; width:200px">
+	              <div class="form-group shiny-input-container">
+	                <input id="select_state" type="text" class="form-control" value="" placeholder="Enter State"/>
+	              </div>
+	            </div>
+	            <div style="display:inline-block; width:250px">
+	              <div class="form-group shiny-input-container">
+	                <input id="select_city" type="text" class="form-control" value="" placeholder="Enter City"/>
+	              </div>
+	            </div>
+	            
+	            <div style="display:inline-block; width:150px">
+	              <div class="form-group shiny-input-container">
+	                <input id="select_zip" type="text" class="form-control" value="" placeholder="Enter zipcode"/>
+	              </div>
+	            </div>
+	            <div id="networkMap" style="width:100%; height:850px; " class="leaflet html-widget html-widget-output"></div>
+	            <div style="display:inline-block; width:150px; float:right">
+	              <button id="view_party_network" type="button" class="btn btn-default action-button">View Network for Selected Party</button>
+	            </div>
+	            
+	            <div class="modal sbs-modal fade" id="party_window" tabindex="-1" data-sbs-trigger="view_party_network">
+	              <div class="modal-dialog modal-lg">
+	                <div class="modal-content">
+	                  <div class="modal-header">
+	                    <button type="button" class="close" data-dismiss="modal">
+	                      <span>&times;</span>
+	                    </button>
+	                    <h4 class="modal-title">Selected Party</h4>
+	                  </div>
+	                  <div class="modal-body">
+	                    <div id="party_popup" style="width:100%; height:400px; " class="visNetwork html-widget html-widget-output"></div>
+	                  </div>
+	                  <div class="modal-footer">
+	                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	                  </div>
+	                </div>
+	              </div>
+	            </div>
+	            
+	            <script>
+	            $(document).ready(function() {setTimeout(function() {shinyBS.addTooltip('networkMap', 'popover', {'content': 'View Party Network', 'placement': 'bottom', 'trigger': 'click', 'title': 'Selected Party'})}, 500)});
+	            </script>
+	            
+          	</div>
+          	
+          	<div role="tabpanel" class="tab-pane" id="shiny-tab-community"></div>
+          	<div role="tabpanel" class="tab-pane" id="shiny-tab-anomaly">
+            	<div class="row">
+            		<div class="col-sm-2">
+		                <div style="display:inline-block; width:100px">
+		                  <div class="form-group shiny-input-container">
+		                    <input id="party_a_input" type="text" class="form-control" value="" placeholder="Party ID"/>
+		                  </div>
+		                </div>
+		                
+		                <div style="display:inline-block; width:100px">
+		                  <div class="form-group shiny-input-container">
+		                    <input id="add_party_a_input" type="text" class="form-control" value="" placeholder="Add Party"/>
+		                  </div>
+		                </div>
+		                <div style="width:200px; ">
+		                  <div class="form-group shiny-input-container">
+		                    <div class="checkbox">
+		                      <label>
+		                        <input id="stats_a_checkbox" type="checkbox"/>
+		                        <span>Local Statistics</span>
+		                      </label>
+		                    </div>
+		                  </div>
+		                </div>
+		                
+		                
+		                <div style=" width:200px; ">
+		                  <div class="form-group shiny-input-container">
+		                    <div class="checkbox">
+		                      <label>
+		                        <input id="trans_info_a_checkbox" type="checkbox"/>
+		                        <span>Transactions</span>
+		                      </label>
+		                    </div>
+		                  </div>
+		                </div>
+		                
+		                <div style=" width:200px; ">
+		                  <div class="form-group shiny-input-container">
+		                    <div class="checkbox">
+		                      <label>
+		                        <input id="accounts_a_checkbox" type="checkbox"/>
+		                        <span>Party to Accounts</span>
+		                      </label>
+		                    </div>
+		                  </div>
+		                </div>
+		                <div style="width:200px; ">
+		                  <div class="form-group shiny-input-container">
+		                    <div class="checkbox">
+		                      <label>
+		                        <input id="party_info_a_checkbox" type="checkbox"/>
+		                        <span>Party Information</span>
+		                      </label>
+		                    </div>
+		                  </div>
+		                </div>
+		                
+		                
+		                
+		                
+		                
+                	</div>
+                
+	            	<div class="col-sm-10">
+		                <div data-display-if="input.party_a_input != &#39;&#39; ">
+		                  <div id="party_output_anomaly" style="width:100%; height:450px; " class="visNetwork html-widget html-widget-output"></div>
+		                </div>
+	              	</div>
+            	
+          		</div>
+          		
+          		<div data-display-if="input.accounts_a_checkbox == true">
+	              <div class="col-sm-6">
+	                <div class="box box-warning">
+	                  <div class="box-header">
+	                    <h3 class="box-title">Party to Accounts</h3>
+	                    <div class="box-tools pull-right">
+	                      <button class="btn btn-box-tool" data-widget="collapse">
+	                        <i class="fa fa-minus"></i>
+	                      </button>
+	                    </div>
+	                  </div>
+	                  <div class="box-body">
+	                    <div id="party_accounts_a" style="width:100%; height:auto; " class="datatables html-widget html-widget-output"></div>
+	                  </div>
+	                </div>
+	              </div>
+	            </div>
+	            
+	            <div data-display-if="input.party_info_a_checkbox == true">
+	              <div class="col-sm-6">
+	                <div class="box box-danger">
+	                  <div class="box-header">
+	                    <h3 class="box-title">Party Information</h3>
+	                    <div class="box-tools pull-right">
+	                      <button class="btn btn-box-tool" data-widget="collapse">
+	                        <i class="fa fa-minus"></i>
+	                      </button>
+	                    </div>
+	                  </div>
+	                  <div class="box-body">
+	                    <div id="party_info_a" style="width:100%; height:auto; " class="datatables html-widget html-widget-output"></div>
+	                  </div>
+	                </div>
+	              </div>
+	            </div>
+	            
+	            <div data-display-if="input.trans_info_a_checkbox == true">
+	              <div class="col-sm-6">
+	                <div class="box box-warning">
+	                  <div class="box-header">
+	                    <h3 class="box-title">Transactions</h3>
+	                    <div class="box-tools pull-right">
+	                      <button class="btn btn-box-tool" data-widget="collapse">
+	                        <i class="fa fa-minus"></i>
+	                      </button>
+	                    </div>
+	                  </div>
+	                  <div class="box-body">
+	                    <div id="party_trans_a" style="width:100%; height:auto; " class="datatables html-widget html-widget-output"></div>
+	                  </div>
+	                </div>
+	              </div>
+	            </div>
+	            
+          		
+          		<div data-display-if="input.stats_a_checkbox == true">
+	              <div class="col-sm-6">
+	                <div class="box box-primary">
+	                  <div class="box-header">
+	                    <h3 class="box-title">Local Statistics</h3>
+	                    <div class="box-tools pull-right">
+	                      <button class="btn btn-box-tool" data-widget="collapse">
+	                        <i class="fa fa-minus"></i>
+	                      </button>
+	                    </div>
+	                  </div>
+	                  <div class="box-body">
+	                    <div id="party_stats_a" style="width:100%; height:auto; " class="datatables html-widget html-widget-output"></div>
+	                  </div>
+	                </div>
+	              </div>
+	            </div>
+          		
+          	</div>
+          	
+          	<div role="tabpanel" class="tab-pane" id="shiny-tab-fraud">
+          	  <div class="row">
+          	  
+	          	  <div style="display:inline-block; width:10px"></div>
+	              <div style="display:inline-block; width:150px">
+	                <div class="form-group shiny-input-container">
+	                  <input id="select_party_network_fraud" type="text" class="form-control" value="" placeholder="Party ID"/>
+	                </div>
+	              </div>
+	              
+	              <div style="display:inline-block; width:100px">
+	                <div class="form-group shiny-input-container">
+	                  <input id="add_party_fraud" type="text" class="form-control" value="" placeholder="Add Party"/>
+	                </div>
+	              </div>
+	              <div style="display:inline-block; width:50px"></div>
+	              <div style="display:inline-block; width:150px">
+	                <div class="form-group shiny-input-container">
+	                  <input id="ip_input_fraud" type="text" class="form-control" value="" placeholder="IP Address"/>
+	                </div>
+	              </div>
+	              <div style="display:inline-block; width:150px">
+	                <div class="form-group shiny-input-container">
+	                  <input id="device_input_fraud" type="text" class="form-control" value="" placeholder="Device ID"/>
+	                </div>
+	              </div>
+	              <div style="display:inline-block; width:150px">
+	                <div class="form-group shiny-input-container">
+	                  <input id="eds_input_fraud" type="text" class="form-control" value="" placeholder="EDS Key"/>
+	                </div>
+	              </div>
+	              <div style="display:inline-block; width:150px">
+	                <div class="form-group shiny-input-container">
+	                  <input id="party_account_input_fraud" type="text" class="form-control" value="" placeholder="Account Number"/>
+	                </div>
+	              </div>
+	              <div style="display:inline-block; width:150px">
+	                <div class="form-group shiny-input-container">
+	                  <input id="party_email_input_fraud" type="text" class="form-control" value="" placeholder="Email Address"/>
+	                </div>
+	              </div>
+	              
+	              
+	              <div style="display:inline-block; width:150px">
+	                <div class="form-group shiny-input-container">
+	                  <input id="party_phone_input_fraud" type="text" class="form-control" value="" placeholder="Phone Number"/>
+	                </div>
+	              </div>
+	              <div style="display:inline-block; width:150px">
+	                <div class="form-group shiny-input-container">
+	                  <input id="email_domain_input_fraud" type="text" class="form-control" value="" placeholder="Email Domain Name"/>
+	                </div>
+	              </div>
+	              <div style="display:inline-block; width:100px">
+	                <div class="form-group shiny-input-container">
+	                  <input id="party_ssn_input_fraud" type="text" class="form-control" value="" placeholder="SSN"/>
+	                </div>
+	              </div>
+	          	  
+          	  </div>
+          	  
+          	  
+          	  <div class="row">
+	              <div class="col-sm-2">
+	                <div style="width:200px; ">
+	                  <div class="form-group shiny-input-container">
+	                    <div class="checkbox">
+	                      <label>
+	                        <input id="stats_fraud" type="checkbox"/>
+	                        <span>Local Statistics</span>
+	                      </label>
+	                    </div>
+	                  </div>
+	                </div>
+	                
+	                <div style=" width:200px; ">
+	                  <div class="form-group shiny-input-container">
+	                    <div class="checkbox">
+	                      <label>
+	                        <input id="trans_info_fraud" type="checkbox"/>
+	                        <span>Transactions</span>
+	                      </label>
+	                    </div>
+	                  </div>
+	                </div>
+	                <div style=" width:200px; ">
+	                  <div class="form-group shiny-input-container">
+	                    <div class="checkbox">
+	                      <label>
+	                        <input id="accounts_fraud" type="checkbox"/>
+	                        <span>Party to Accounts</span>
+	                      </label>
+	                    </div>
+	                  </div>
+	                </div>
+	                
+	                <div style=" width:200px; ">
+	                  <div class="form-group shiny-input-container">
+	                    <div class="checkbox">
+	                      <label>
+	                        <input id="ip_src" type="checkbox"/>
+	                        <span>Splunk Source</span>
+	                      </label>
+	                    </div>
+	                  </div>
+	                </div>
+	                <div style="width:200px; ">
+	                  <div class="form-group shiny-input-container">
+	                    <div class="checkbox">
+	                      <label>
+	                        <input id="party_info_fraud" type="checkbox"/>
+	                        <span>Party Information</span>
+	                      </label>
+	                    </div>
+	                  </div>
+	                </div>
+	                
+	                
+	              </div>
+	              
+	              <div class="col-sm-10">
+	                <div id="party_output_network_fraud" style="width:100%; height:450px; " class="visNetwork html-widget html-widget-output"></div>
+	              </div>
+              
+	              <div data-display-if="input.accounts_fraud == true">
+	                <div class="col-sm-6">
+	                  <div class="box box-warning">
+	                    <div class="box-header">
+	                      <h3 class="box-title">Party to Accounts</h3>
+	                      <div class="box-tools pull-right">
+	                        <button class="btn btn-box-tool" data-widget="collapse">
+	                          <i class="fa fa-minus"></i>
+	                        </button>
+	                      </div>
+	                    </div>
+	                    <div class="box-body">
+	                      <div id="party_accounts_fraud" style="width:100%; height:auto; " class="datatables html-widget html-widget-output"></div>
+	                    </div>
+	                  </div>
+	                </div>
+	              </div>
+	              
+	              <div data-display-if="input.party_info_fraud == true">
+	                <div class="col-sm-6">
+	                  <div class="box box-danger">
+	                    <div class="box-header">
+	                      <h3 class="box-title">Party Information</h3>
+	                      <div class="box-tools pull-right">
+	                        <button class="btn btn-box-tool" data-widget="collapse">
+	                          <i class="fa fa-minus"></i>
+	                        </button>
+	                      </div>
+	                    </div>
+	                    <div class="box-body">
+	                      <div id="party_info_fraud" style="width:100%; height:auto; " class="datatables html-widget html-widget-output"></div>
+	                    </div>
+	                  </div>
+	                </div>
+	              </div>
+	              
+	              <div data-display-if="input.trans_info_fraud == true">
+	                <div class="col-sm-6">
+	                  <div class="box box-warning">
+	                    <div class="box-header">
+	                      <h3 class="box-title">Transactions</h3>
+	                      <div class="box-tools pull-right">
+	                        <button class="btn btn-box-tool" data-widget="collapse">
+	                          <i class="fa fa-minus"></i>
+	                        </button>
+	                      </div>
+	                    </div>
+	                    <div class="box-body">
+	                      <div id="party_trans_fraud" style="width:100%; height:auto; " class="datatables html-widget html-widget-output"></div>
+	                    </div>
+	                  </div>
+	                </div>
+	              </div>
+	              
+	              
+	              <div data-display-if="input.stats_fraud == true">
+	                <div class="col-sm-6">
+	                  <div class="box box-primary">
+	                    <div class="box-header">
+	                      <h3 class="box-title">Local Statistics</h3>
+	                      <div class="box-tools pull-right">
+	                        <button class="btn btn-box-tool" data-widget="collapse">
+	                          <i class="fa fa-minus"></i>
+	                        </button>
+	                      </div>
+	                    </div>
+	                    <div class="box-body">
+	                      <div id="party_stats_fraud" style="width:100%; height:auto; " class="datatables html-widget html-widget-output"></div>
+	                    </div>
+	                  </div>
+	                </div>
+	              </div>
+	              
+	              
+	              <div data-display-if="input.ip_src == true">
+	                <div class="col-sm-6">
+	                  <div class="box box-primary">
+	                    <div class="box-header">
+	                      <h3 class="box-title">IP Source</h3>
+	                      <div class="box-tools pull-right">
+	                        <button class="btn btn-box-tool" data-widget="collapse">
+	                          <i class="fa fa-minus"></i>
+	                        </button>
+	                      </div>
+	                    </div>
+	                    <div class="box-body">
+	                      <div id="ip_src_fraud" style="width:100%; height:auto; " class="datatables html-widget html-widget-output"></div>
+	                    </div>
+	                  </div>
+	                </div>
+	              </div>
+	              
+	              <div class="modal sbs-modal fade" id="email_window" tabindex="-1">
+	                <div class="modal-dialog modal-lg">
+	                  <div class="modal-content">
+	                    <div class="modal-header">
+	                      <button type="button" class="close" data-dismiss="modal">
+	                        <span>&times;</span>
+	                      </button>
+	                      <h4 class="modal-title">Email Thread</h4>
+	                    </div>
+	                    <div class="modal-body">
+	                      <div id="email_thread" class="shiny-html-output"></div>
+	                    </div>
+	                    <div class="modal-footer">
+	                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	                    </div>
+	                  </div>
+	                </div>
+	              </div>
+	              
+	          </div>
+           
+          	  
+          	  
+          	  
+          	  
+          	  
+          	  
+          	</div>
+          	
+     	    
+     	</div>
+      </section>
+    </div>
+    
+  </div>
+</body>	
+
 
 
 
@@ -55,3 +1102,5 @@ Start of the page here
   <p>No polls are available.</p>
 {% endif %}
 
+
+</html>
